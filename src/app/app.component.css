@@ -1,0 +1,22 @@
+.header {
+  height: 100px;
+  background-color: #1c8adb;
+  font-family: sans-serif;
+}
+
+.header ul {
+  float: right;
+  list-style-type: none;
+}
+
+.header ul li {
+  display: inline-block;
+  padding: 20px;
+}
+
+.header ul li a{
+  color:white;
+  text-decoration: none;
+  cursor:pointer;
+  font-size: x-large;
+}
