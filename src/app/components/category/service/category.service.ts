@@ -10,7 +10,7 @@ export class CategoryService {
   constructor(private backend:BackendService ) {}
 
   public addCategory(name:String):any{
-    // return this.backend.post("http://localhost:8080/category",{"name":name});
-    console.log("added");
+    var req =  this.backend.post("http://localhost:8080/category/add",{"name":name});
+    req.subscribe();
   }
 }

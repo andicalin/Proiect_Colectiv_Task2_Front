@@ -9,7 +9,7 @@ export class DomainService {
   constructor(private backend:BackendService ) {}
 
   public addDomain(name:String):any{
-    // return this.backend.post("http://localhost:8080/domain",{"name":name});
-    console.log("added");
+    var req = this.backend.post("http://localhost:8080/domain/add",{"name":name});
+    req.subscribe();
   }
 }
