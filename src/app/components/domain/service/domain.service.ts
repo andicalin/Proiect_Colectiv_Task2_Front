@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BackendService } from 'src/backend/backend.service';
 
 @Injectable({
@@ -6,10 +7,10 @@ import { BackendService } from 'src/backend/backend.service';
 })
 export class DomainService {
 
-  constructor(private backend:BackendService ) {}
+  constructor(private backend: BackendService) { }
 
-  public addDomain(name:String):any{
-    var req = this.backend.post("http://localhost:8080/domain/add",{"name":name});
+  public addDomain(name: String): any {
+    var req = this.backend.post("http://localhost:8080/domain/add", { "name": name });
     req.subscribe();
   }
 }
