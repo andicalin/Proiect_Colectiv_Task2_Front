@@ -9,15 +9,26 @@ import { CategoryService } from './service/category.service';
 })
 export class CategoryComponent implements OnInit {
   title: String | undefined;
-  hasWorked: boolean | undefined;
+  error: String | undefined;
+  success: String | undefined;
   constructor(private service: CategoryService) { }
 
-  addCategory(name: String | undefined) {
+  async addCategory(name: String | undefined) {
     if (name) {
-      this.service.addCategory(name);
-      this.hasWorked = true;
+      var response = await this.service.addCategory(name);
+      if (response == "error") {
+        this.error = "Error! This category was already added!"
+        this.success = undefined
+      }
+      else {
+        this.success = "Success!"
+        this.error = undefined
+      }
     }
-    else { this.hasWorked = false; }
+    else {
+      this.error = "Error! Please enter a category name before submitting."
+      this.success = undefined;
+    }
   }
   ngOnInit(): void {
   }

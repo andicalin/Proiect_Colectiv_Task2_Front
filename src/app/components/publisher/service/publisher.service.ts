@@ -8,8 +8,13 @@ export class PublisherService {
 
   constructor(private backend:BackendService ) {}
 
-  public addPublisher(name:String):any{
-    var req = this.backend.post("http://localhost:8080/publisher/add",{"name":name});
-    req.subscribe();
+  public async addPublisher(name:String):Promise<String>{
+    try {
+      var req = await this.backend.post("http://localhost:8080/publisher/add", { "name": name }).toPromise();
+      return req == "error" ? "error" : "success";
+    }
+    catch (Exception) {
+      return 'error'
+    }
   }
 }

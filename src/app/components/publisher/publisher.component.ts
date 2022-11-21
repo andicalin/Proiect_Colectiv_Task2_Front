@@ -8,16 +8,28 @@ import { PublisherService } from './service/publisher.service';
 })
 export class PublisherComponent implements OnInit {
 
-  hasWorked:boolean|undefined;
   title: String | undefined;
+  error: String | undefined;
+  success:String|undefined;
   constructor(private service: PublisherService) { }
 
-  addPublisher(name: String | undefined) {
+  async addPublisher(name: String | undefined) {
     if (name) {
-      this.service.addPublisher(name);
-      this.hasWorked = true;
+      var response = await this.service.addPublisher(name);
+      if (response == "error") {
+        this.error = "Error! This publisher was already added!"
+        this.success = undefined;
+      }
+      else {
+        this.success = "Success!"
+        this.error = undefined;
+      }
     }
-    else {this.hasWorked=false; }
+    else {
+      this.error = "Error! Please enter a publisher name before submitting."
+      this.success = undefined;
+
+    }
   }
 
   ngOnInit(): void {

@@ -9,15 +9,26 @@ import { DomainService } from './service/domain.service';
 export class DomainComponent implements OnInit {
 
   title: String | undefined;
-  hasWorked:boolean|undefined;
+  error: String | undefined;
+  success: String | undefined;
   constructor(private service: DomainService) { }
 
-  addDomain(name: String | undefined) {
+  async addDomain(name: String | undefined) {
     if (name) {
-      this.service.addDomain(name);
-      this.hasWorked=true;
+      var response = await this.service.addDomain(name);
+      if (response == "error") {
+        this.error = "Error! This domain was already added!"
+        this.success = undefined;
+      }
+      else {
+        this.success = "Success!"
+        this.error = undefined;
+      }
     }
-    else {this.hasWorked = false;}
+    else {
+      this.error = "Error! Please enter a domain name before submitting."
+      this.success = undefined
+    }
   }
   ngOnInit(): void {
   }
