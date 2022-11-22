@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {UserCredentials} from "../../shared/data-type/UserCredentials";
@@ -9,6 +9,8 @@ import {UserCredentials} from "../../shared/data-type/UserCredentials";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  @Output() clickCreate = new EventEmitter<JSON>();
 
   loginFormGroup = this.formBuilder.group({
     email: ["", [Validators.required, Validators.email]],
@@ -27,16 +29,16 @@ export class LoginComponent implements OnInit {
       email: valuesFromForm.email!,
       password: valuesFromForm.password!,
     };
-    // @ts-ignore
-    if (this.getPasswordErrorMessage() == "" && this.getEmailErrorMessage() == "") {
-      this.userService.loginUser(userCredentials).subscribe({
+       this.userService.loginUser(userCredentials).subscribe({
         next: response => {
+          console.log(valuesFromForm.email + " " + valuesFromForm.password)
         },
         error: err => {
+          console.log(valuesFromForm.email + " " + valuesFromForm.password)
         }
       });
     }
-  }
+
 
   public forgotPassword() {
     const valuesFromForm = this.loginFormGroup.value;
@@ -45,14 +47,16 @@ export class LoginComponent implements OnInit {
       password: valuesFromForm.password!,
     };
     // @ts-ignore
-    if (this.getPasswordErrorMessage() == "" && this.getEmailErrorMessage() == "") {
       this.userService.forgotPassword(userCredentials).subscribe({
         next: response => {
+          console.log(valuesFromForm.email + " " + valuesFromForm.password)
+
         },
         error: err => {
+          console.log(valuesFromForm.email + " jjjjjj" + valuesFromForm.password)
         }
       });
     }
-  }
+
 
 }

@@ -4,20 +4,21 @@
 
   <h1>Login here</h1>
 
-  <form formGroup="loginFormGroup" (ngSubmit)="loginUser()">
+  <form [formGroup]="loginFormGroup" (ngSubmit)="loginUser()">
 
-    <label for="username">Username</label>
-    <input pInputText id="username" type="text" placeholder="Enter username"/>
+    <label for="email">Username</label>
+    <input pInputText id="email" type="text" placeholder="Enter username"/>
 
     <label for="password">Password</label>
     <input pPassword id="password" type="password" placeholder="Enter password"/>
 
     <button pButton id="login" type="submit" label="Log In" class="p-button-rounded"></button>
 
-    <button pButton id="forgotPassword" type="submit" label="Forgot password?"
-            class="p-button-outlined p-button-rounded"></button>
-
   </form>
+
+  <button pButton id="forgotPassword" type="submit" label="Forgot password?"
+          class="p-button-outlined p-button-rounded" (click)="forgotPassword()"></button>
+
 </div>
 
 </body>
