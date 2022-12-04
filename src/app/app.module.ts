@@ -12,7 +12,8 @@ import {PasswordModule} from 'primeng/password';
 import {ButtonModule} from 'primeng/button';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({

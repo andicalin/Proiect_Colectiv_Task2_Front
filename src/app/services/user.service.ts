@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 let login: string;
 let forgotPassword: string;
+let register: string;
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,14 @@ export class UserService {
     localStorage.setItem("email", userCredentials.email);
 
     return this.httpClient.post<any>(forgotPassword, userCredentials);
+  }
+
+  public registerUser(userCredentials: UserCredentials): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+    localStorage.setItem("email", userCredentials.email);
+    localStorage.setItem("password", userCredentials.password);
+
+    return this.httpClient.post<any>(register, userCredentials);
   }
 
 }
