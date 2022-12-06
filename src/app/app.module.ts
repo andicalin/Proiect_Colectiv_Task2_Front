@@ -10,6 +10,7 @@ import {RegisterComponent} from './components/register/register.component';
 import {InputTextModule} from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
 import {ButtonModule} from 'primeng/button';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -26,6 +27,8 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     InputTextModule,
     PasswordModule,
