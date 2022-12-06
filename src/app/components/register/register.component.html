@@ -1,55 +1,53 @@
 <body>
 
-    <div class="register-box">
+<div class="register-box">
 
-      <h1>Register here</h1>
+  <h1>Register here</h1>
 
-      <form [formGroup]="_registerFormGroup" (ngSubmit)="registerUser()">
-        <div>
-          <label for="username">Username</label>
-          <input [class.is-invalid]="email.invalid && email.touched"
-                 pInputText id="username"
-                 type="text"
-                 placeholder="Enter username"
-                 class="registerFormGroup"
-                 formControlName="email"/>
-          <div *ngIf="(email.invalid && email.touched) || email.dirty">
-            <small *ngIf="email.errors?.['required']" class="alert alert-danger">Email is required</small>
-            <small *ngIf="email.errors?.['pattern']" class="alert alert-danger">Please provide a valid email address </small>
-          </div>
-        </div>
-        <div>
-          <label for="password">Password</label>
-          <input [class.is-invalid]="password.invalid && password.touched"
-                 pPassword id="password"
-                 type="password"
-                 placeholder="Enter password"
-                 class="registerFormGroup"
-                 formControlName="password"/>
-          <div *ngIf="(email.invalid && email.touched) || email.dirty">
-            <small *ngIf="password.errors?.['required']" class="alert alert-danger">Password is required</small>
-            <small *ngIf="password.errors?.['pattern']" class="alert alert-danger">Please provide a valid password</small>
-          </div>
-        </div>
-        <div>
-          <label for="Password">Confirm Password</label>
-          <input [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched"
-                 pPassword id="confirmPassword"
-                 type="password"
-                 placeholder="Confirm your password"
-                 class="registerFormGroup"
-                 formControlName="confirmPassword"/>
-          <div *ngIf="(email.invalid && email.touched) || email.dirty">
-            <small *ngIf="confirmPassword.errors?.['required']" class="alert alert-danger">Password is required</small>
-            <small *ngIf="confirmPassword.errors?.['pattern']" class="alert alert-danger">Please provide a valid password</small>
-          </div>
-        </div>
-
-        <button pButton id="Register" type="submit" label="Register" class="p-button-rounded"></button>
-
-      </form>
+  <form [formGroup]="registerFormGroup" (ngSubmit)="registerUser()">
+    <div>
+      <label for="username">Username</label>
+      <input [class.is-invalid]="email.invalid && email.touched"
+             pInputText id="username"
+             type="text"
+             placeholder="Enter username"
+             class="registerFormGroup"
+             formControlName="email"/>
+      <div *ngIf="(email.invalid && email.touched) || email.dirty">
+        <small *ngIf="email.errors?.['required']" class="alert alert-danger">Email is required</small>
+        <small *ngIf="email.errors?.['pattern']" class="alert alert-danger">Please provide a valid email address </small>
+      </div>
     </div>
 
-    </body>
+    <div>
+      <label for="password">Password</label>
+      <input
+        pPassword id="password"
+        type="password"
+        placeholder="Enter your password"
+        class="registerFormGroup"
+        formControlName="password"/>
+      <div *ngIf="(email.invalid && email.touched) || email.dirty">
+        <small *ngIf="password.errors?.['required']" class="alert alert-danger">Password is required</small>
+        <small *ngIf="password.errors?.['pattern']" class="alert alert-danger">Please provide a valid password</small>
+      </div>
+    </div>
+    <div>
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        pPassword id="confirmPassword"
+        type="password"
+        placeholder="Confirm your password"
+        class="registerFormGroup"
+        formControlName="confirmPassword"/>
+      <div *ngIf="(password.invalid && password.touched) || password.dirty">
+        <small *ngIf="confirmPassword.errors?.['required']" class="alert alert-danger">Confirmation password is required</small>
+        <small *ngIf="confirmPassword.errors?.['ConfirmedValidator']">Confirmation password does not match Password</small>
+      </div>
+    </div>
+    <button pButton id="Register" type="submit" label="Register" class="p-button-rounded"></button>
 
+  </form>
+</div>
 
+</body>

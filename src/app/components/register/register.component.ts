@@ -1,22 +1,27 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserCredentials} from "../../shared/data-type/UserCredentials";
+import {ConfirmedValidator} from "./confirmedValidator";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit {
 
   _registerFormGroup = this.formBuilder.group({
     email: ["", [Validators.required,
       Validators.pattern("^[a-z]+\\.[a-z]+@(stud.){0,1}(ubbcluj.ro){1}$")]],
-    password: ["", [Validators.required],
-      Validators.pattern("^(?=.*?[A-Z])[a-z]*(?=.*?[0-9])[#?!@$%^&*-]*.{5,}$")],
-    confirmPassword: ["", [Validators.required],
-      Validators.pattern("^(?=.*?[A-Z])[a-z]*(?=.*?[0-9])[#?!@$%^&*-]*.{5,}$")]
+    password: ["", [Validators.required,
+      Validators.pattern("^(?=.*?[A-Z])[a-z]*(?=.*?[0-9])[#?!@$%^&*-]*.{5,}$")]],
+    confirmPassword: ["", [Validators.required,
+      Validators.pattern("^(?=.*?[A-Z])[a-z]*(?=.*?[0-9])[#?!@$%^&*-]*.{5,}$")]]
+    },
+    {
+    validator: ConfirmedValidator('password', 'confirmPassword')
   })
 
   get email() {
@@ -32,6 +37,10 @@ export class RegisterComponent implements OnInit {
   constructor(private userService: UserService, private formBuilder: FormBuilder) {
   }
 
+  get registerFormGroup(): FormGroup {
+    return this._registerFormGroup;
+  }
+
   ngOnInit(): void {
   }
 
@@ -40,6 +49,7 @@ export class RegisterComponent implements OnInit {
     const userCredentials: UserCredentials = {
       email: valuesFromForm.email!,
       password: valuesFromForm.password!,
+      confirmPassword: valuesFromForm.confirmPassword
     };
     // @ts-ignore
     this.userService.registerUser(userCredentials).subscribe({

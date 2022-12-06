@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserCredentials} from "../../shared/data-type/UserCredentials";
 
 @Component({
   selector: 'app-login',
@@ -37,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   public loginUser() {
     const valuesFromForm = this._loginFormGroup.value;
-    const userCredentials: UserCredentials = {
+    const userCredentials: {  email: any, password: any; } = {
       email: valuesFromForm.email!,
       password: valuesFromForm.password!,
     };
@@ -55,7 +54,7 @@ export class LoginComponent implements OnInit {
   public forgotPassword() {
     const valuesFromForm = this.loginFormGroup.value;
     console.log(this.loginFormGroup.value);
-    const userCredentials: UserCredentials = {
+    const userCredentials: { password: any; email: any } = {
       email: valuesFromForm.email!,
       password: valuesFromForm.password!
     };
