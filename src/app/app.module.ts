@@ -1,9 +1,17 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {RouterModule, Routes} from "@angular/router";
 
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import {AppComponent} from './app.component';
+import {LoginComponent} from './components/login/login.component';
+import {RegisterComponent} from './components/register/register.component';
+
+import {PasswordModule} from 'primeng/password';
+
+const routes: Routes = [
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent}
+];
 
 
 import {ButtonModule} from 'primeng/button';
@@ -34,11 +42,18 @@ import { PublisherService } from './components/publisher/service/publisher.servi
   ],
   imports: [
     BrowserModule,
-    ButtonModule,
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+
     InputTextModule,
+    PasswordModule,
+    ButtonModule,
     FormsModule,
     MenubarModule,
     HttpClientModule,
+  ],
+  exports: [
+    RouterModule
   ],
   providers: [
     CategoryService,
@@ -47,4 +62,5 @@ import { PublisherService } from './components/publisher/service/publisher.servi
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
