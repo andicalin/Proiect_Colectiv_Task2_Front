@@ -4,23 +4,41 @@
 
   <h1>Login here</h1>
 
-  <form [formGroup]="loginFormGroup" (ngSubmit)="loginUser()">
-
-    <label for="email">Username</label>
-    <input pInputText  id="email" type="text" placeholder="Enter username" formControlName="email"/>
-
-    <label for="password">Password</label>
-    <input pPassword id="password" type="password" placeholder="Enter password" formControlName="password"/>
-
+  <form [formGroup] ="loginFormGroup" (ngSubmit)="loginUser()">
+    <div>
+      <label for="username">Username</label>
+      <input [class.is-invalid]="email.invalid && email.touched"
+             pInputText id="username"
+             type="text"
+             placeholder="Enter username"
+             class="loginFormGroup"
+             formControlName="email"/>
+      <div *ngIf="(email.invalid && email.touched) || email.dirty">
+        <small *ngIf="email.errors?.['required']" class="alert alert-danger">Email is required</small>
+        <small *ngIf="email.errors?.['pattern']" class="alert alert-danger">Please provide a valid email address </small>
+      </div>
+    </div>
+    <br>
+    <div>
+      <label for="password">Password</label>
+      <input [class.is-invalid]="password.invalid && password.touched"
+             pPassword id="password"
+             type="password"
+             placeholder="Enter password"
+             class="loginFormGroup"
+             formControlName="password"/>
+      <div *ngIf="(email.invalid && email.touched) || email.dirty">
+        <small *ngIf="password.errors?.['required']" class="alert alert-danger">Password is required</small>
+        <small *ngIf="password.errors?.['pattern']" class="alert alert-danger">Please provide a valid password</small>
+      </div>
+    </div>
+    <br>
     <button pButton id="login" type="submit" label="Log In" class="p-button-rounded"></button>
 
+    <button pButton id="forgotPassword" type="submit" label="Forgot password?"
+            class="p-button-outlined p-button-rounded"></button>
+
   </form>
-
-  <button pButton id="forgotPassword" type="submit" label="Forgot password?"
-          class="p-button-outlined p-button-rounded" (click)="forgotPassword()"></button>
-
 </div>
 
 </body>
-
-

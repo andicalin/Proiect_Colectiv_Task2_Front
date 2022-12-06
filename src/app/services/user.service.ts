@@ -15,7 +15,7 @@ export class UserService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public loginUser(userCredentials: UserCredentials): Observable<any> {
+  public loginUser(userCredentials: { email: any; password: any }): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
     localStorage.setItem("email", userCredentials.email);
     localStorage.setItem("password", userCredentials.password);
@@ -34,6 +34,7 @@ export class UserService {
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
     localStorage.setItem("email", userCredentials.email);
     localStorage.setItem("password", userCredentials.password);
+    localStorage.setItem("confirmPassword", userCredentials.confirmPassword);
 
     return this.httpClient.post<any>(register, userCredentials);
   }

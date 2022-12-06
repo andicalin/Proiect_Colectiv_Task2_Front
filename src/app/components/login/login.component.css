@@ -35,7 +35,7 @@ h1 {
 .login-box input[type="text"], input[type="password"] {
   width: 100%;
   margin-top: 5px;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
   background: transparent;
   color: #fff;
   outline: none;
@@ -72,3 +72,10 @@ h1 {
   color: #39dc79;
 }
 
+.login-box small{
+  font-weight: bold;
+  font-style: italic;
+  font-size: 18px;
+  color: crimson;
+  text-align-all: justify;
+}
