@@ -13,7 +13,8 @@ import {ButtonModule} from 'primeng/button';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({
