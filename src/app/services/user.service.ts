@@ -22,11 +22,11 @@ export class UserService {
     return this.httpClient.post<any>(login, userCredentials);
   }
 
-  public forgotPassword(userCredentials: UserCredentials): Observable<any> {
+  public forgotPassword(email : string): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-    localStorage.setItem("email", userCredentials.email);
+    localStorage.setItem("email", email);
 //console.log(userCredentials.email);
-    return this.httpClient.post<any>(forgotPassword, userCredentials.email);
+    return this.httpClient.post<any>(forgotPassword, email);
   }
 
 }

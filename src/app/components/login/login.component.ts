@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
   @Output() clickCreate = new EventEmitter<JSON>();
 
   loginFormGroup = this.formBuilder.group({
-    email: ["", [Validators.required, Validators.email]],
-    password: ["", [Validators.required]],
+    email: [""],
+    password: [""]
   })
 
   constructor(private userService: UserService, private formBuilder: FormBuilder) {
@@ -27,36 +27,38 @@ export class LoginComponent implements OnInit {
     const valuesFromForm = this.loginFormGroup.value;
     const userCredentials: UserCredentials = {
       email: valuesFromForm.email!,
-      password: valuesFromForm.password!,
+      password: valuesFromForm.password!
     };
-       this.userService.loginUser(userCredentials).subscribe({
-        next: response => {
-          console.log(valuesFromForm.email + " " + valuesFromForm.password)
-        },
-        error: err => {
-          console.log(valuesFromForm.email + " " + valuesFromForm.password)
-        }
-      });
-    }
+    this.userService.loginUser(userCredentials).subscribe({
+      next: response => {
+        //TODO: send credentials to next page
+        console.log(valuesFromForm.email + " " + valuesFromForm.password)
+      },
+      error: err => {
+        //TODO : error dialog box/snack bar user does not exist
+        console.log(valuesFromForm.email + " " + valuesFromForm.password)
+      }
+    });
+  }
 
 
   public forgotPassword() {
     const valuesFromForm = this.loginFormGroup.value;
+    console.log(this.loginFormGroup.value);
     const userCredentials: UserCredentials = {
       email: valuesFromForm.email!,
-      password: valuesFromForm.password!,
+      password: valuesFromForm.password!
     };
     // @ts-ignore
-      this.userService.forgotPassword(userCredentials).subscribe({
-        next: response => {
-          console.log(valuesFromForm.email + " " + valuesFromForm.password)
-
-        },
-        error: err => {
-          console.log(valuesFromForm.email + " jjjjjj" + valuesFromForm.password)
-        }
-      });
-    }
-
+    this.userService.forgotPassword(userCredentials.email).subscribe({
+      next: response => {
+        console.log(valuesFromForm.email + " " + valuesFromForm.password)
+      },
+      error: err => {
+        //TODO: create dialog boxes with email not valid for
+        console.log(valuesFromForm.email + valuesFromForm.password)
+      }
+    });
+  }
 
 }

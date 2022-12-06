@@ -7,10 +7,10 @@
   <form [formGroup]="loginFormGroup" (ngSubmit)="loginUser()">
 
     <label for="email">Username</label>
-    <input pInputText id="email" type="text" placeholder="Enter username"/>
+    <input pInputText  id="email" type="text" placeholder="Enter username" formControlName="email"/>
 
     <label for="password">Password</label>
-    <input pPassword id="password" type="password" placeholder="Enter password"/>
+    <input pPassword id="password" type="password" placeholder="Enter password" formControlName="password"/>
 
     <button pButton id="login" type="submit" label="Log In" class="p-button-rounded"></button>
 
