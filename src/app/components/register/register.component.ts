@@ -10,11 +10,24 @@ import {UserCredentials} from "../../shared/data-type/UserCredentials";
 })
 export class RegisterComponent implements OnInit {
 
-  registerFormGroup = this.formBuilder.group({
-    email: ["", [Validators.required, Validators.email]],
-    password: ["", [Validators.required]],
-    confirmPassword: ["", [Validators.required]]
+  _registerFormGroup = this.formBuilder.group({
+    email: ["", [Validators.required,
+      Validators.pattern("^[a-z]+\\.[a-z]+@(stud.){0,1}(ubbcluj.ro){1}$")]],
+    password: ["", [Validators.required],
+      Validators.pattern("^(?=.*?[A-Z])[a-z]*(?=.*?[0-9])[#?!@$%^&*-]*.{5,}$")],
+    confirmPassword: ["", [Validators.required],
+      Validators.pattern("^(?=.*?[A-Z])[a-z]*(?=.*?[0-9])[#?!@$%^&*-]*.{5,}$")]
   })
+
+  get email() {
+    return this._registerFormGroup.get('email')
+  }
+  get password() {
+    return this._registerFormGroup.get('password')
+  }
+  get confirmPassword() {
+    return this._registerFormGroup.get('confirmPassword')
+  }
 
   constructor(private userService: UserService, private formBuilder: FormBuilder) {
   }
@@ -23,7 +36,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public registerUser() {
-    const valuesFromForm = this.registerFormGroup.value;
+    const valuesFromForm = this._registerFormGroup.value;
     const userCredentials: UserCredentials = {
       email: valuesFromForm.email!,
       password: valuesFromForm.password!,
