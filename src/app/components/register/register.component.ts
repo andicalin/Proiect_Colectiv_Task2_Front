@@ -29,6 +29,15 @@ export class RegisterComponent implements OnInit {
       password: valuesFromForm.password!,
     };
     // @ts-ignore
+    this.userService.registerUser(userCredentials).subscribe({
+      next: response => {
+        //TODO: redirect to login page
+        console.log(valuesFromForm.email + " " + valuesFromForm.password)
+      },
+      error: err => {
+        console.log(valuesFromForm.email + " " + valuesFromForm.password)
+      }
+    });
   }
 
 }
