@@ -18,6 +18,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RippleModule} from "primeng/ripple";
 import {DialogService, DynamicDialogModule} from "primeng/dynamicdialog";
 import {CommonModule} from "@angular/common";
+import {PaginatorModule} from "primeng/paginator";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -32,17 +33,18 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CommonModule,
     DynamicDialogModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    BrowserAnimationsModule,
     InputTextModule,
     PasswordModule,
     ButtonModule,
     ReactiveFormsModule,
     TableModule,
     RippleModule,
+    PaginatorModule,
   ],
   exports: [
     RouterModule

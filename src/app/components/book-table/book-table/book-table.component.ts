@@ -12,7 +12,8 @@ import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 export class BookTableComponent implements OnInit {
   books:BookTable[]=[];
   first = 0;
-  rows = 10;
+  rows = 5;
+  totalRecords=0;
 
 
   constructor(private bookTableService:BookTableService,public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
@@ -32,23 +33,14 @@ export class BookTableComponent implements OnInit {
   }
 
   generateListForTable(title:string,number:string){
-      let book:BookTable={title:"",numberOfStudents:""};
+      let book:BookTable={"title":"","numberOfStudents":""};
       book.title=title;
       book.numberOfStudents=number;
       this.books.push(book);
+      this.totalRecords++;
   }
-
-  next() {
-    this.first = this.first + this.rows;
-  }
-
-  prev() {
-    this.first = this.first - this.rows;
-  }
-
   reset() {
     this.first = 0;
   }
-
 
 }

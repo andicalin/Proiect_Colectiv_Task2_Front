@@ -19,4 +19,8 @@ export class BookTableService {
       map(res => res)
     );
   }
+  public books(): Observable<BookTable[]>{
+    return this._http.get<any>('http://localhost:8080/books/getBooksWithUsersNr')
+    ;
+  }
 }
