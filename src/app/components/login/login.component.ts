@@ -1,14 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
+  emailFromRegister : string = ""
   private _loginFormGroup = this.formBuilder.group({
     email: ["", [Validators.required,
       Validators.pattern("^[a-z]+\\.[a-z]+@(stud.){0,1}(ubbcluj.ro){1}$")]],
@@ -17,10 +20,19 @@ export class LoginComponent implements OnInit {
       Validators.pattern("^(?=.*?[A-Z])[a-z]*(?=.*?[0-9])[#?!@$%^&*-]*.{5,}$")]],
   })
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder) {
+  constructor(private userService: UserService, private formBuilder: FormBuilder, private router : Router) {
   }
 
+
   ngOnInit(): void {
+
+    if (localStorage.getItem('email') != null) {
+    this.emailFromRegister = localStorage.getItem('email')!;
+    this._loginFormGroup.patchValue({email:this.emailFromRegister})
+    }
+    localStorage.removeItem('email');
+    console.log(this.emailFromRegister)
+
   }
 
   get email() {
@@ -36,19 +48,21 @@ export class LoginComponent implements OnInit {
 
   public loginUser() {
     const valuesFromForm = this._loginFormGroup.value;
-    const userCredentials: {  email: any, password: any; } = {
-      email: valuesFromForm.email!,
-      password: valuesFromForm.password!,
+    const userCredentials: { email: any, password: any; } = {
+          email: valuesFromForm.email!,
+          password: valuesFromForm.password!,
     };
+
+    this.router.navigate(['menu'])
+    localStorage.setItem('email', userCredentials.email)
+    console.log(userCredentials.email)
     // @ts-ignore
-    if (this.getPasswordErrorMessage() == "" && this.getEmailErrorMessage() == "") {
       this.userService.loginUser(userCredentials).subscribe({
         next: response => {
         },
         error: err => {
         }
       });
-    }
   }
 
   public forgotPassword() {
@@ -61,11 +75,12 @@ export class LoginComponent implements OnInit {
     // @ts-ignore
     this.userService.forgotPassword(userCredentials.email).subscribe({
       next: response => {
-        console.log(valuesFromForm.email + " " + valuesFromForm.password)
+
+
       },
       error: err => {
         //TODO: create dialog boxes with email not valid for
-        console.log(valuesFromForm.email + valuesFromForm.password)
+
       }
     });
   }

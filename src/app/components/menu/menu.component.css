@@ -1,0 +1,27 @@
+
+  h1 {
+    padding: 20px;
+    text-align: center;
+    font-size: 45px;
+  }
+
+  .button-wrapper {
+
+
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 8px;
+
+  button {
+    background-color:black;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+
+    text-decoration: none;
+  }
+
+}
+

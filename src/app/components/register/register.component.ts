@@ -1,14 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserCredentials} from "../../shared/data-type/UserCredentials";
 import {ConfirmedValidator} from "./confirmedValidator";
+import {Router} from "@angular/router";
+import {LoginUserCredentials} from "../../shared/data-type/LoginUserCredentials";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 
 export class RegisterComponent implements OnInit {
 
@@ -34,7 +37,7 @@ export class RegisterComponent implements OnInit {
     return this._registerFormGroup.get('confirmPassword')
   }
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder) {
+  constructor(private userService: UserService, private formBuilder: FormBuilder, private router : Router) {
   }
 
   get registerFormGroup(): FormGroup {
@@ -51,14 +54,21 @@ export class RegisterComponent implements OnInit {
       password: valuesFromForm.password!,
       confirmPassword: valuesFromForm.confirmPassword
     };
-    // @ts-ignore
+
+
+    this.router.navigate(['login'])
+    localStorage.setItem('email', userCredentials.email);
+
+
+    //@ts-ignore
     this.userService.registerUser(userCredentials).subscribe({
       next: response => {
-        //TODO: redirect to login page
-        console.log(valuesFromForm.email + " " + valuesFromForm.password)
+
+        this.router.navigate(['login'])
+        localStorage.setItem('email', userCredentials.email);
       },
       error: err => {
-        console.log(valuesFromForm.email + " " + valuesFromForm.password)
+
       }
     });
   }
