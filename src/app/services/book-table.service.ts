@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {BackendService} from "../../../backend/backend.service";
+import {BackendService} from "./backend.service";
 import {map, Observable} from "rxjs";
-import {BookTable} from "../book-table/model/BookTable";
+import {BookTable} from "../shared/data-type/BookTable";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
