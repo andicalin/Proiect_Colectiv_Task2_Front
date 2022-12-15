@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {BookTableService} from "../service/book-table.service";
-import {BookTable} from "./model/BookTable";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {BookTableService} from "../../../services/book-table.service";
+import {BookTable} from "../../../shared/data-type/BookTable";
 import {Subscription} from "rxjs";
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 
@@ -10,15 +10,18 @@ import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
   styleUrls: ['./book-table.component.css']
 })
 export class BookTableComponent implements OnInit {
+
   books:BookTable[]=[];
   first = 0;
   rows = 5;
   totalRecords=0;
 
 
+
   constructor(private bookTableService:BookTableService,public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
 
   ngOnInit(): void {
+    console.log("ceva")
     this.bookTableService.getBooksWithStudentNr().subscribe({
       next: res => {
         Object.entries(res).map(([k, v]) => {

@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
 
     this.router.navigate(['menu'])
     localStorage.setItem('email', userCredentials.email)
-    console.log(userCredentials.email)
+
     // @ts-ignore
       this.userService.loginUser(userCredentials).subscribe({
         next: response => {
@@ -84,5 +84,10 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
+  public goToRegister(){
+    this.router.navigate(['register'])
+  }
+
 
 }
