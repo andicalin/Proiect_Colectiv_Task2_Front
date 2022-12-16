@@ -53,12 +53,13 @@ export class LoginComponent implements OnInit {
           password: valuesFromForm.password!,
     };
 
-    this.router.navigate(['menu'])
-    localStorage.setItem('email', userCredentials.email)
+
 
     // @ts-ignore
       this.userService.loginUser(userCredentials).subscribe({
         next: response => {
+          this.router.navigate(['menu'])
+          localStorage.setItem('email', userCredentials.email)
         },
         error: err => {
         }

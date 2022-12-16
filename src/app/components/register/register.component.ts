@@ -56,10 +56,6 @@ export class RegisterComponent implements OnInit {
     };
 
 
-    this.router.navigate(['login'])
-    localStorage.setItem('email', userCredentials.email);
-
-
     //@ts-ignore
     this.userService.registerUser(userCredentials).subscribe({
       next: response => {
