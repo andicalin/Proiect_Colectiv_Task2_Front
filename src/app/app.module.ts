@@ -1,15 +1,14 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule, Routes} from "@angular/router";
-import { HttpClientModule } from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import { MenuComponent } from './components/menu/menu.component';
 
-import {InputTextModule} from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
+
 import {ButtonModule} from 'primeng/button';
 import {ReactiveFormsModule} from "@angular/forms";
 
@@ -26,11 +25,32 @@ import {OrderListModule} from "primeng/orderlist";
 import { AppRoutingModule } from './app-routing.module';
 
 
+
+import {ButtonModule} from 'primeng/button';
+
+import {InputTextModule} from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
+
+import {MenubarModule} from 'primeng/menubar';
+import {MenuItem} from 'primeng/api';
+import { CategoryComponent } from './components/category/category.component';
+import { DomainComponent } from './components/domain/domain.component';
+import { PublisherComponent } from './components/publisher/publisher.component';
+import { CategoryService } from './components/category/service/category.service';
+import { HttpClientModule } from '@angular/common/http';
+import { DomainService } from './components/domain/service/domain.service';
+import { PublisherService } from './components/publisher/service/publisher.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    CategoryComponent,
+    DomainComponent,
+    PublisherComponent,
+
     MenuComponent,
   BookTableComponent
   ],
@@ -44,6 +64,9 @@ import { AppRoutingModule } from './app-routing.module';
     InputTextModule,
     PasswordModule,
     ButtonModule,
+    FormsModule,
+    MenubarModule,
+    HttpClientModule,
     ReactiveFormsModule,
     TableModule,
     RippleModule,
@@ -53,6 +76,11 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    CategoryService,
+    DomainService,
+    PublisherService,
   ],
   providers: [DialogService],
   bootstrap: [AppComponent]
