@@ -13,7 +13,6 @@ import {ButtonModule} from 'primeng/button';
 import {ReactiveFormsModule} from "@angular/forms";
 
 
-
 import {BookTableComponent} from "./components/menu/book-table/book-table.component";
 import {TableModule} from "primeng/table";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -23,6 +22,7 @@ import {CommonModule} from "@angular/common";
 import {PaginatorModule} from "primeng/paginator";
 import {OrderListModule} from "primeng/orderlist";
 import { AppRoutingModule } from './app-routing.module';
+import { LinkViewerComponent } from './components/menu/book-table/link-viewer/link-viewer.component';
 
 
 
@@ -52,7 +52,8 @@ import { PublisherService } from './components/publisher/service/publisher.servi
     PublisherComponent,
 
     MenuComponent,
-  BookTableComponent
+  BookTableComponent,
+  LinkViewerComponent
   ],
   imports: [
     BrowserModule,
