@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
+import {BookTableComponent} from "./components/menu/book-table/book-table.component";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,7 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'pc-frontend';
+    constructor() {
+    }
+
 }

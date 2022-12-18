@@ -5,13 +5,25 @@ import {RouterModule, Routes} from "@angular/router";
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 import {PasswordModule} from 'primeng/password';
 
-const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
-];
+import {ButtonModule} from 'primeng/button';
+import {ReactiveFormsModule} from "@angular/forms";
+
+
+
+import {BookTableComponent} from "./components/menu/book-table/book-table.component";
+import {TableModule} from "primeng/table";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {RippleModule} from "primeng/ripple";
+import {DialogService, DynamicDialogModule} from "primeng/dynamicdialog";
+import {CommonModule} from "@angular/common";
+import {PaginatorModule} from "primeng/paginator";
+import {OrderListModule} from "primeng/orderlist";
+import { AppRoutingModule } from './app-routing.module';
+
 
 
 import {ButtonModule} from 'primeng/button';
@@ -38,19 +50,29 @@ import { PublisherService } from './components/publisher/service/publisher.servi
     CategoryComponent,
     DomainComponent,
     PublisherComponent,
-    
+
+    MenuComponent,
+  BookTableComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
-    HttpClientModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    DynamicDialogModule,
 
+    HttpClientModule,
     InputTextModule,
     PasswordModule,
     ButtonModule,
     FormsModule,
     MenubarModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    TableModule,
+    RippleModule,
+    PaginatorModule,
+    AppRoutingModule,
+
   ],
   exports: [
     RouterModule
@@ -60,6 +82,7 @@ import { PublisherService } from './components/publisher/service/publisher.servi
     DomainService,
     PublisherService,
   ],
+  providers: [DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -3,19 +3,19 @@ import {UserCredentials} from "../shared/data-type/UserCredentials";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
-let login: string;
+let login: string = "http://localhost:8080/user/login";
 let forgotPassword: string;
-let register: string;
+let register: string = "http://localhost:8080/user/register";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private httpClient:HttpClient) {
+  constructor(private httpClient: HttpClient) {
   }
 
-  public loginUser(userCredentials: UserCredentials): Observable<any> {
+  public loginUser(userCredentials: { email: any; password: any }): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
     localStorage.setItem("email", userCredentials.email);
     localStorage.setItem("password", userCredentials.password);
@@ -23,19 +23,19 @@ export class UserService {
     return this.httpClient.post<any>(login, userCredentials);
   }
 
-  public forgotPassword(userCredentials: UserCredentials): Observable<any> {
+  public forgotPassword(email: string): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-    localStorage.setItem("email", userCredentials.email);
-
-    return this.httpClient.post<any>(forgotPassword, userCredentials);
+    localStorage.setItem("email", email);
+//console.log(userCredentials.email);
+    return this.httpClient.post<any>(forgotPassword, email);
   }
 
   public registerUser(userCredentials: UserCredentials): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
     localStorage.setItem("email", userCredentials.email);
     localStorage.setItem("password", userCredentials.password);
+    localStorage.setItem("confirmPassword", userCredentials.confirmPassword);
 
     return this.httpClient.post<any>(register, userCredentials);
   }
-
 }
