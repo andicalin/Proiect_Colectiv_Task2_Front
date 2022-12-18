@@ -61,9 +61,6 @@ export class MenuComponent implements OnInit {
     //this.router.navigate(['update-component'])
   }
 
-  showReport() {
-    //TODO : create show report component
-  }
 
   goToAdd() {
     //TODO: create add component
