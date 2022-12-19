@@ -14,7 +14,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 })
 export class MenuComponent implements OnInit {
   email : string = ""
-  isAdmin : boolean = true
+  isAdmin : boolean = false
   isStudent : boolean = false
   ref: DynamicDialogRef | undefined;
 
@@ -65,7 +65,8 @@ export class MenuComponent implements OnInit {
 
   goToAdd() {
     //TODO: create add component
-    // After adding:
+    // This code should run after adding (needs to be moved)
+    window.alert("The book has been added!");
     this.ref = this.dialogService.open(BookDetailsComponent, {
       header: 'Book details',
       width: '70%',
