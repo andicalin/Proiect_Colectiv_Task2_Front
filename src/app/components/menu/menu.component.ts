@@ -6,6 +6,7 @@ import {BackendService} from "../../services/backend.service";
 import {HttpClient, HttpHandler} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
+import { BookDetailsComponent } from './book-details/book-details.component';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -13,7 +14,7 @@ import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 })
 export class MenuComponent implements OnInit {
   email : string = ""
-  isAdmin : boolean = false
+  isAdmin : boolean = true
   isStudent : boolean = false
   ref: DynamicDialogRef | undefined;
 
@@ -64,5 +65,12 @@ export class MenuComponent implements OnInit {
 
   goToAdd() {
     //TODO: create add component
+    // After adding:
+    this.ref = this.dialogService.open(BookDetailsComponent, {
+      header: 'Book details',
+      width: '70%',
+      // Data is hard coded for demonstration purposes only
+      data: {book: {"title": "title", "numberOfStudents": "1"}}
+    });
   }
 }

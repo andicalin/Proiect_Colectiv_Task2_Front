@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BookTable } from 'src/app/shared/data-type/BookTable';
 
 @Component({
   selector: 'app-book-details',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookDetailsComponent implements OnInit {
 
-  constructor() { }
+  book: BookTable;
+
+  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
+    this.book = config.data.book;
+  }
 
   ngOnInit(): void {
   }
